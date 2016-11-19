@@ -11,11 +11,20 @@ var deepEquals = function (o1, o2) {
   // console.log(o1);
   // console.log(o2);
 
-  if(null === o1 || null === o2 || undefined === o1 || undefined === o2){
+  if(
+    null === o1 || 
+    null === o2 || 
+    undefined === o1 || 
+    undefined === o2 || 
+    NaN === o1 || 
+    NaN === o2){
     return o1 === o2;
   }
 
-  if(typeof o1 === 'string' || typeof o1 === 'number' || typeof o1 === 'boolean') {
+  if(
+    typeof o1 === 'string' || 
+    typeof o1 === 'number' || 
+    typeof o1 === 'boolean') {
     return o1 === o2;
   }
 
@@ -202,6 +211,17 @@ var obj51 = {
   }
 };
 
+var obj52 = {
+  a: 'string',
+  b: NaN
+};
+
+var obj53 = {
+  a: 'string',
+  b: NaN
+};
+
+
 // expect(false, deepEquals(obj1, obj2));
 // expect(false, deepEquals(obj1, obj3));
 // expect(false, deepEquals(obj1, obj4));
@@ -242,3 +262,13 @@ compare(undefined, undefined);
 compare(1,true);
 compare(false,0);
 compare(obj50,obj51);
+compare(obj52,obj53);
+compare(NaN,NaN);
+compare(1);
+compare({},NaN);
+compare({},null);
+compare({},undefined);
+compare(undefined,{});
+compare({},{});
+compare('true',true);
+compare('false',false);
