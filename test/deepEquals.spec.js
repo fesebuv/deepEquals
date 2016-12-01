@@ -161,10 +161,6 @@ function compare(o1, o2) {
   var myEqual = deepEquals(o1, o2)
   var c = nodeEqual === myEqual;
 
-  // console.log('node.deepEqual: %s', nodeEqual);
-  // console.log('deepEquals:%s', myEqual)
-  // console.log('===> ', c);
-
   return c;
 }
 
