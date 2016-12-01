@@ -2,7 +2,7 @@
   "name": "deep_equals",
   "version": "0.0.1",
   "description": "deep equals",
-  "main": "deepEquals.js",
+  "main": "src/deepEquals.js",
   "scripts": {
     "test": "mocha"
   },
