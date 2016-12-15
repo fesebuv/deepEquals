@@ -164,35 +164,46 @@ function compare(o1, o2) {
   return c;
 }
 
-describe('define deepEquals', function (){
+var tests = [
+  {'compare an object that has a property that makes reference to the other':[obj1, obj2]},
+  {'should compare two different objects':[obj1, obj3]},
+  {'compare an object to an array':[obj1, obj4]},
+  {'compare an object to an object that has reference to that object':[obj1, obj5]},
+  {'compare two objects that have reference to similar object':[obj10, obj20]},
+  {'compare two objects that have reference to similar object with a falsy value':[obj10, obj21]},
+  {'compare two objects that have reference to similar object with a null value':[obj10, obj22]},
+  {'compare object with objects that contains references':[obj30, obj31]},
+  {'compare an object to a null':[obj30, null]},
+  {'compare two nulls':[null, null]},
+  {'compare an undefined object and a null':[undefined, null]},
+  {'compare two undefined':[undefined, undefined]},
+  {'compare a number to a boolean':[1,true]},
+  {'compare a boolean to a number':[false,0]},
+  {'should compare two objects':[obj50,obj51]},
+  {'should compare two objects':[obj52,obj53]},
+  {'compare two `NaN` objects':[NaN,NaN]},
+  {'compare a number to an undefined parameter':[1]},
+  {'compare an empty object to `NaN`':[{},NaN]},
+  {'compare an empty object to a null':[{},null]},
+  {'compare an empty object to undefined':[{},undefined]},
+  {'compare undefined to an empty object':[undefined,{}]},
+  {'compare two empty objects':[{},{}]},
+  {'compare trufty to a boolean true':['true',true]},
+  {'compare falsy to a boolean false':['false',false]}
+];
 
-  it('should expect deepEquals to be equal to node deepEqual', function (){
-    expect(compare(obj1, obj2)).to.be.true;
-    expect(compare(obj1, obj3)).to.be.true;
-    expect(compare(obj1, obj4)).to.be.true;
-    expect(compare(obj1, obj5)).to.be.true;
-    expect(compare(obj10, obj20)).to.be.true;
-    expect(compare(obj10, obj21)).to.be.true;
-    expect(compare(obj10, obj22)).to.be.true;
-    expect(compare(obj30, obj31)).to.be.true;
-    expect(compare(obj30, null)).to.be.true;
-    expect(compare(null, null)).to.be.true;
-    expect(compare(undefined, null)).to.be.true;
-    expect(compare(undefined, undefined)).to.be.true;
-    expect(compare(1,true)).to.be.true;
-    expect(compare(false,0)).to.be.true;
-    expect(compare(obj50,obj51)).to.be.true;
-    expect(compare(obj52,obj53)).to.be.true;
-    expect(compare(NaN,NaN)).to.be.true;
-    expect(compare(1)).to.be.true;
-    expect(compare({},NaN)).to.be.true;
-    expect(compare({},null)).to.be.true;
-    expect(compare({},undefined)).to.be.true;
-    expect(compare(undefined,{})).to.be.true;
-    expect(compare({},{})).to.be.true;
-    expect(compare('true',true)).to.be.true;
-    expect(compare('false',false)).to.be.true;
-
+describe('define deepEquals', function() {
+  describe('it should compare two objects', function(){
+    tests.map(function(obj, index) {
+      for(var key in obj){
+        if(obj.hasOwnProperty(key)){
+          it(key, function() {
+            var o1 = obj[key][0];
+            var o2 = obj[key][1];
+            expect(compare(o1,o2)).to.be.true;
+          });
+        }
+      }
+    });
   });
-
 });
