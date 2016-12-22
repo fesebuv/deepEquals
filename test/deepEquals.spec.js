@@ -159,8 +159,9 @@ function compare(o1, o2) {
 
   var nodeEqual = equal(o1, o2, {strict:true});
   var myEqual = deepEquals(o1, o2)
-  var c = nodeEqual === myEqual;
-
+  // @NOTE: we can use chai expect here for simplicity
+  expect(nodeEqual).to.equal(myEqual);
+  
   return c;
 }
 
@@ -181,6 +182,17 @@ var Person2 = {
 var nationality = new function(){
   Person2.nationality = 'English'
 };
+
+// @NOTE: alternatively, we could have used the descriptions as our keys
+var tests = {
+  'some description': [obj1, obj2]
+};
+Object.keys(tests).forEach(key => {
+  const args = tests[key];
+  it(key, function () {
+    compare(args[0], args[1])
+  })
+});
 
 var tests = [
   {'compare an object that has a property that makes reference to the other':[obj1, obj2]},
@@ -212,8 +224,17 @@ var tests = [
 ];
 
 describe('define deepEquals', function() {
+  // @NOTE: manually writing each test in place
+  it('should compare an object to an array', function () {
+    // define test objects in place with the test
+    var o1 = {};
+    var o2 = [];
+    // using a helper is ok!
+    expect(_compare(obj10, obj50)).to.be.true;
+  });
+
   describe('it should compare two objects', function(){
-    tests.map(function(obj, index) {
+    tests.forEach((test, index) => {
       for(var key in obj){
         if(obj.hasOwnProperty(key)){
           it(key, function() {
