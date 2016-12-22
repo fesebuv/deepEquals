@@ -164,6 +164,24 @@ function compare(o1, o2) {
   return c;
 }
 
+var Person1 = {
+  firstName: 'first',
+  lastName: 'last',
+  age: 'age',
+  eyeColor: 'eyecolor',
+  nationality: 'English'
+};
+var Person2 = {
+  firstName: 'first',
+  lastName: 'last',
+  age: 'age',
+  eyeColor: 'eyecolor'
+};
+
+var nationality = new function(){
+  Person2.nationality = 'English'
+};
+
 var tests = [
   {'compare an object that has a property that makes reference to the other':[obj1, obj2]},
   {'should compare two different objects':[obj1, obj3]},
@@ -189,7 +207,8 @@ var tests = [
   {'compare undefined to an empty object':[undefined,{}]},
   {'compare two empty objects':[{},{}]},
   {'compare trufty to a boolean true':['true',true]},
-  {'compare falsy to a boolean false':['false',false]}
+  {'compare falsy to a boolean false':['false',false]},
+  {'compare two objects one is extended':[Person1,Person2]}
 ];
 
 describe('define deepEquals', function() {
