@@ -1,21 +1,26 @@
 'use strict';
 
+var isPrimitive = function (obj){
+  return (
+    typeof obj === 'boolean' ||
+    typeof obj === 'null' ||
+    typeof obj === 'undefined' ||
+    typeof obj === 'number' ||
+    typeof obj === 'string'
+  );
+};
+
+var isSpecialObj = function (obj){
+  return (
+    NaN === obj ||
+    undefined === obj ||
+    null === obj
+  );
+};
+
 var deepEquals = function (o1, o2) {
 
-  if(
-    null === o1 ||
-    null === o2 ||
-    undefined === o1 ||
-    undefined === o2 ||
-    NaN === o1 ||
-    NaN === o2){
-    return o1 === o2;
-  }
-
-  if(
-    typeof o1 === 'string' ||
-    typeof o1 === 'number' ||
-    typeof o1 === 'boolean') {
+  if(isPrimitive(o1) || isSpecialObj(o1)){
     return o1 === o2;
   }
 
