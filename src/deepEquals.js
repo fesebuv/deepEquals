@@ -1,58 +1,36 @@
 'use strict';
 
+// @NOTE: can be a separate file
 var isPrimitive = function (obj){
   return (
     typeof obj === 'boolean' ||
-    typeof obj === 'null' ||
-    typeof obj === 'undefined' ||
     typeof obj === 'number' ||
-    typeof obj === 'string'
+    typeof obj === 'string' ||
+    obj === undefined
   );
 };
 
-var isSpecialObj = function (obj){
-  return (
-    NaN === obj ||
-    undefined === obj ||
-    null === obj
-  );
-};
+module.exports.deepEquals = function deepEquals (o1, o2) {
 
-var deepEquals = function (o1, o2) {
-
-  if(isPrimitive(o1) || isSpecialObj(o1)){
+  if (!o1 || !o2 || isPrimitive(o1)) {
     return o1 === o2;
   }
 
-  if(!o2) {
+  if(Object.keys(o1).length !== Object.keys(o2).length){
     return false;
   }
 
   var keys = Object.keys(o1);
   var len = keys.length;
 
-  for(var i=0; i<len; i++) {
+  for(var i = 0; i < len; i++) {
 
     var key = keys[i];
-    var value1 = o1[key];
-    var value2 = o2[key];
 
-    if(!o2.hasOwnProperty(key)) {
+    if (!deepEquals(o1[key], o2[key])) {
       return false;
     }
-
-    if(typeof value1 === 'object') {
-      var r = deepEquals(value1, value2);
-      if(!r){
-        return r;
-      }
-    } else if(value1 !== value2) {
-      return false;
-    }
+    
   }
   return true;
 };
-
-module.exports = {
-  deepEquals: deepEquals
-}
