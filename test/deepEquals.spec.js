@@ -155,15 +155,6 @@ var obj53 = {
   b: NaN
 };
 
-function compare(o1, o2) {
-
-  var nodeEqual = equal(o1, o2, {strict:true});
-  var myEqual = deepEquals(o1, o2)
-  var c = nodeEqual === myEqual;
-
-  return c;
-}
-
 var Person1 = {
   firstName: 'first',
   lastName: 'last',
@@ -210,6 +201,13 @@ var tests = [
   {'compare falsy to a boolean false':['false',false]},
   {'compare two objects one is extended':[Person1,Person2]}
 ];
+
+
+function compare(o1, o2) {
+  var nodeEqual = equal(o1, o2, {strict:true});
+  var myEqual = deepEquals(o1, o2)
+  return nodeEqual === myEqual;
+}
 
 describe('define deepEquals', function() {
   describe('it should compare two objects', function(){
