@@ -1,14 +1,5 @@
 'use strict';
-
-// @NOTE: can be a separate file
-var isPrimitive = function (obj){
-  return (
-    typeof obj === 'boolean' ||
-    typeof obj === 'number' ||
-    typeof obj === 'string' ||
-    obj === undefined
-  );
-};
+var isPrimitive = require('is-primitive-type');
 
 module.exports.deepEquals = function deepEquals (o1, o2) {
 
@@ -30,7 +21,6 @@ module.exports.deepEquals = function deepEquals (o1, o2) {
     if (!deepEquals(o1[key], o2[key])) {
       return false;
     }
-    
   }
   return true;
 };
