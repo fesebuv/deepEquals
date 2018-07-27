@@ -4,6 +4,7 @@
   "description": "deep equals",
   "main": "src/deepEquals.js",
   "scripts": {
+    "coverage": "nyc mocha --timeout=3000",
     "test": "mocha"
   },
   "repository": {
@@ -15,15 +16,17 @@
     "equals"
   ],
   "author": "Felipe S. Buenano",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/fesebuv/deepEquals/issues"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "deep-equal": "^1.0.1",
-    "mocha": "^3.1.2"
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
   },
   "dependencies": {
-    "is-primitive-type": "0.0.3"
+    "is-primitive-type": "0.0.5"
   }
 }

@@ -169,6 +169,12 @@ var Person2 = {
   eyeColor: 'eyecolor'
 };
 
+var Person3 = {
+  firstname: 'first',
+  lastName: 'last',
+  age: 'age'
+};
+
 var nationality = new function(){
   Person2.nationality = 'English'
 };
@@ -199,7 +205,8 @@ var tests = [
   {'compare two empty objects':[{},{}]},
   {'compare trufty to a boolean true':['true',true]},
   {'compare falsy to a boolean false':['false',false]},
-  {'compare two objects one is extended':[Person1,Person2]}
+  {'compare two objects one is extended':[Person1,Person2]},
+  {'compare two objects with different number of keys': [Person1, Person3]}
 ];
 
 

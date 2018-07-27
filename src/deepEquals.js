@@ -1,7 +1,7 @@
 'use strict';
 var isPrimitive = require('is-primitive-type');
 
-module.exports.deepEquals = function deepEquals (o1, o2) {
+function deepEquals (o1, o2) {
 
   if (!o1 || !o2 || isPrimitive(o1)) {
     return o1 === o2;
@@ -23,4 +23,8 @@ module.exports.deepEquals = function deepEquals (o1, o2) {
     }
   }
   return true;
+};
+
+module.exports = {
+  deepEquals: deepEquals
 };
